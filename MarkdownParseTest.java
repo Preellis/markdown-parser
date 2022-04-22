@@ -11,11 +11,39 @@ public class MarkdownParseTest {
         assertEquals(2, 1 + 1);
     }
     @Test
-    public void testGetLinks() throws IOException{
+    public void testGetLinks0() throws IOException{
         Path fileName = Path.of("test-file.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
-        assertEquals(links, 
-            List.of("https://something.com", "some-thing.html"));
+        assertEquals(List.of("https://something.com", "some-thing.html"),
+            links);
+    }
+    @Test
+    public void testGetLinks1() throws IOException{
+        Path fileName = Path.of("break-test.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(List.of("some-thing.html"), links);
+    }
+    @Test
+    public void testGetLinks2() throws IOException{
+        Path fileName = Path.of("break-test2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(List.of(), links);
+    }
+    @Test
+    public void testGetLinks3() throws IOException{
+        Path fileName = Path.of("break-test3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(List.of(), links);
+    }
+    @Test
+    public void testGetLinks4() throws IOException{
+        Path fileName = Path.of("break-test4.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(List.of("some-stuff.html"), links);
     }
 }
