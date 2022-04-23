@@ -24,17 +24,25 @@ public class MarkdownParse {
                 continue;
             }
             int closeBracket = markdown.indexOf("]", openBracket);
+            if (closeBracket == -1)
+            {
+                break;
+            }
             int openParen = markdown.indexOf("(", closeBracket);
             if (openParen == -1)
             {
                 break;
             }
+            int space = markdown.indexOf(" ", openParen);
             int closeParen = markdown.indexOf(")", openParen);
             if (closeParen == -1)
             {
                 break;
             }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            if (space == -1 || space > closeParen)
+            {
+                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
             currentIndex = closeParen + 1;
             
         }
