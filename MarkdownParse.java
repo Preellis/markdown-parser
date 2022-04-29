@@ -39,9 +39,12 @@ public class MarkdownParse {
             {
                 break;
             }
-            if (space == -1 || space > closeParen)
+            if (markdown.substring(openParen + 1, closeParen)
+                .trim().indexOf(" ") == -1)
             {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+                toReturn.add(
+                    markdown.substring(openParen + 1, closeParen).trim()
+                    );
             }
             currentIndex = closeParen + 1;
             
