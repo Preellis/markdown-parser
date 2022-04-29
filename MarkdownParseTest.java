@@ -46,4 +46,11 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(List.of("some-stuff.html"), links);
     }
+    @Test
+    public void testGetLinks5() throws IOException{
+        Path fileName = Path.of("test4.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(List.of("hi"), links);
+    }
 }
